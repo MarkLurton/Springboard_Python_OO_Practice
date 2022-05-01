@@ -34,3 +34,19 @@ class WordFinder:
     def random(self):
         """Returns a random word from word list"""
         return self.words[randint(0,len(self.words) - 1)]
+
+class SpecialWordFinder(WordFinder):
+    """Find random word from dictionary skipping blank lines"""
+    def __init__(self, file):
+        super().__init__(file)
+        self.words = self.findwords()
+
+    def findwords(self):
+        """Read words from file and add them into words list if they are not blank lines"""
+        words = []
+
+        with open(f'{self.file}', 'r') as wordfile:
+            for line in wordfile:
+                if line.strip() != '' and not line.strip().startswith('#'):
+                    words.append(line.strip())
+        return words

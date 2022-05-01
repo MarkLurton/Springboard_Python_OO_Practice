@@ -23,6 +23,9 @@ class SerialGenerator:
         self.start = start - 1
         self.serial = start - 1
     
+    def __repr__(self):
+        return f'SerialGenerator(start = {self.start + 1}, next = {self.serial + 1})'
+    
     def generate(self):
         """Generate new serial number"""
         self.serial += 1
